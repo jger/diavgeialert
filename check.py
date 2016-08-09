@@ -6,10 +6,8 @@
 
 import urllib.request
 from datetime import date
-#from xml.dom.minidom import parse
-#import xml.dom.minidom
 import xml.etree.ElementTree as etree 
-
+import json
 
 
 
@@ -21,17 +19,10 @@ subject = '%CE%92%CE%B5%CF%81%CE%BF%CE%BB%CE%AF%CE%BD%CE%BF'
 url = 'https://diavgeia.gov.gr/opendata/search?term='+term+'&from_date='+date+'&subject='+subject
 
 
-with urllib.request.urlopen(url) as response:
-   json = response.read()
+#with urllib.request.urlopen(url) as response:
+#   json = response.read()
 
-# Open XML document using minidom parser
-#DOMTree = xml.dom.minidom.parse(xml)
-#decisions = DOMTree.documentElement
-#info = decisions.getElementsByTagName("info")
-
-#print (info.childNodes[0].data)
-#print (info.childNodes[1].data)
-
-
-print(json)
-#tree = etree.ElementTree(etree.fromstring(xml))
+#print(json)
+response = urllib.request.urlopen(url)
+encoding = response.info().get_content_charset('utf8')
+data = json.loads(response.read().decode(encoding))
