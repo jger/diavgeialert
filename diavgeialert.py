@@ -30,9 +30,15 @@ def mail(me, you, text):
   msg['From'] = me
   msg['To'] = you
   s = smtplib.SMTP('localhost')
-  s.sendmail(me, [you], msg.as_string())
+  s.sendmail(me, [you], msg.as_string()) # For email send you must install postfix or something else you like
   s.quit()
 
+def readvars():
+  # Read variables simply stored with | separated
+  f = open( 'vars.txt', 'r' )
+  vars = f.read()
+  f.close
+  return vars.split("|")
 
 # Call the check function
 [chk, data] = check(term, subject)
@@ -40,4 +46,8 @@ def mail(me, you, text):
 # Check if we had something 
 if int(chk)>0:
   # Check if this is somthing new
-  mail(me, you, chk)
+  vars = readvars()
+  print (vars[0])
+  print (vars[1])
+  #mail(me, you, chk)
+  
