@@ -27,8 +27,8 @@ def check(term, subject, date):
 def mail(me, you, text):
   import smtplib
   from email.mime.text import MIMEText
-  msg = MIMEText('Ok!' + str(text))
-  msg['Subject'] = 'You have a new alert!'
+  msg = MIMEText('Ok! ' + str(text))
+  msg['Subject'] = 'New alert! ' + '[' + str(text) + ']' 
   msg['From'] = me
   msg['To'] = you
   s = smtplib.SMTP('localhost')
@@ -66,5 +66,5 @@ if int(chk)>0:
   [fdate, fchk] = readvars()
   if (fdate!=date) or (fchk!=chk):
     writevars(str(date) + '|' + str(chk))
-    #mail(me, you, chk)
-  
+    mail(me, you, chk)
+    print('New alert mailed')  
