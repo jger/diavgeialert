@@ -64,7 +64,7 @@ date = d.isoformat()
 if int(chk)>0:
   # Check if this is somthing new
   [fdate, fchk] = readvars()
-  if (fdate!=date) or (fchk!=chk):
+  if (fdate!=date) or (int(fchk)!=int(chk)):
     writevars(str(date) + '|' + str(chk))
     mail(me, you, chk)
     print('New alert mailed')  
