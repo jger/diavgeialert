@@ -5,17 +5,19 @@
 # Date: 2016-08-09
 
 # Term and Subject that we looking for
+
+##############################################################################
+
 term = 'dipode2'
 subject = '%CE%92%CE%B5%CF%81%CE%BF%CE%BB%CE%AF%CE%BD%CE%BF'
 me = 'noreply@myhomerpi.gr'
 you = 'j.gerardis@gmail.com'
 
-def check(term, subject):
+##############################################################################
+
+def check(term, subject, date):
   import urllib.request
-  from datetime import date
   import json
-  d = date.today() # Date for search if today is something new
-  date = d.isoformat() 
   url = 'https://diavgeia.gov.gr/opendata/search?term='+term+'&from_date='+date+'&subject='+subject
   response = urllib.request.urlopen(url)
   encoding = response.info().get_content_charset('utf8')
@@ -40,14 +42,29 @@ def readvars():
   f.close
   return vars.split("|")
 
+def writevars(vars):
+  # Store variables simply with | separated
+  f = open( 'vars.txt', 'w' )
+  f.write(vars)
+  f.close
+  return
+
+###################################################
+
+
+# Get today date
+from datetime import date
+d = date.today() # Date for search if today is something new
+date = d.isoformat()
+
 # Call the check function
-[chk, data] = check(term, subject)
+[chk, data] = check(term, subject, date)
 
 # Check if we had something 
 if int(chk)>0:
   # Check if this is somthing new
-  vars = readvars()
-  print (vars[0])
-  print (vars[1])
-  #mail(me, you, chk)
+  [fdate, fchk] = readvars()
+  if (fdate!=date) or (fchk!=chk):
+    writevars(str(date) + '|' + str(chk))
+    #mail(me, you, chk)
   
