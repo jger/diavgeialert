@@ -11,7 +11,7 @@
 term = 'dipode2'
 subject = '%CE%92%CE%B5%CF%81%CE%BF%CE%BB%CE%AF%CE%BD%CE%BF'
 me = 'noreply@myhomerpi.gr'
-you = 'j.gerardis@gmail.com'
+you = 'EMAIL_HERE'
 
 ##############################################################################
 
