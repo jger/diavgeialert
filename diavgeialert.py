@@ -1,6 +1,5 @@
 # This python program check if something new published on diavgeia
 # if something new then it send an email
-# and return as result the number of items 
 # 
 # Author: Gerardis Ioannis
 # Date: 2016-08-09
@@ -21,3 +20,10 @@ def check(term, subject):
   data = json.loads(response.read().decode(encoding))
   return ([data['info']['actualSize'], data])
 
+# Call the check function
+[chk, data] = check(term, subject)
+
+# Check if we had something 
+if int(chk)>0:
+  # Check if this is somthing new
+  
