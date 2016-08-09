@@ -37,14 +37,14 @@ def mail(me, you, text):
 
 def readvars():
   # Read variables simply stored with | separated
-  f = open( 'vars.txt', 'r' )
+  f = open( '/home/pi/diavgeialert/vars.txt', 'r' )
   vars = f.read()
   f.close
   return vars.split("|")
 
 def writevars(vars):
   # Store variables simply with | separated
-  f = open( 'vars.txt', 'w' )
+  f = open( '/home/pi/diavgeialert/vars.txt', 'w' )
   f.write(vars)
   f.close
   return
